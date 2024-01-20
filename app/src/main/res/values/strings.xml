@@ -9,6 +9,7 @@
 
     <string name="height">Height:</string>
     <string name="feet">Feet</string>
+    <string name="cm">CM</string>
     <string name="inch">Inch</string>
     <string name="result">Result</string>
     <string name="healthy">Healthy</string>
@@ -21,4 +22,6 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="image">image</string>
+    <string name="pound">Pound</string>
+    <string name="calculate">Submit</string>
 </resources>

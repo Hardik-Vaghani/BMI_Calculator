@@ -1,18 +1,25 @@
 package com.hardik.bmicalculator
 
+import android.annotation.SuppressLint
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
+import android.widget.SeekBar
+import androidx.annotation.RequiresApi
 import com.hardik.bmicalculator.databinding.ActivityMainBinding
 import kotlin.math.log
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
     val TAG = MainActivity::class.java.simpleName
     lateinit var binding: ActivityMainBinding
+    var age by Delegates.notNull<Int>()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Making the activity fullscreen
@@ -34,6 +41,9 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        binding.seekBarAge.min = 0
+        binding.seekBarAge.max = 150
+        age = 16
         binding.heightFeetPicker.minValue = 1
         binding.heightFeetPicker.maxValue = 15
         binding.heightFeetPicker.value = 5
@@ -49,6 +59,21 @@ class MainActivity : AppCompatActivity() {
 
         calculateBmi()
 
+        binding.seekBarAge.setOnSeekBarChangeListener(object:SeekBar.OnSeekBarChangeListener{
+            @SuppressLint("SetTextI18n")
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.tvAge.text = "${resources.getString(R.string.age)}$p1"
+                age = p1
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+        })
         binding.heightFeetPicker.setOnValueChangedListener { numberPicker, i, i2 ->
             calculateBmi()
         }
@@ -76,11 +101,19 @@ class MainActivity : AppCompatActivity() {
         val totalWeightKg = weightKg.toDouble() + (weightGm.toDouble() / 1000)
 //        Log.d(TAG, "calculateBmi: $totalWeightKg")
 
-        val bmi = totalWeightKg / (totalMiter * totalMiter)
+//        val bmi = totalWeightKg / (totalMiter * totalMiter)
 
-        binding.tvResult.text = String.format("Your BMI is: %.2f", bmi)
-        binding.tvHealthy.text = String.format("Considered: %s", healthMessage(bmi))
+//        binding.tvResult.text = String.format("Your BMI is: %.2f", bmi)
+//        binding.tvHealthy.text = String.format("Considered: %s", healthMessage(bmi))
 
+        try {
+            val bmi = calculateBMI(3, "female", totalMiter, totalWeightKg)
+            binding.tvResult.text = String.format("Your BMI is: %.2f", bmi)
+            binding.tvHealthy.text = String.format("Considered: %s", healthMessage(bmi))
+            println("Adjusted BMI: $bmi")
+        } catch (e: IllegalArgumentException) {
+            println("Error: ${e.message}")
+        }
 
     }
 
@@ -112,6 +145,34 @@ class MainActivity : AppCompatActivity() {
         return resources.getString(R.string.srtObesityWt)
 
     }
+
+    private fun calculateBMI(age: Int, gender: String, height: Double, weight: Double): Double {
+        if (age <= 0 || height <= 0.0 || weight <= 0.0) {
+            throw IllegalArgumentException("Invalid input values. Age, height, and weight must be positive.")
+        }
+
+        val bmi: Double = weight / (height * height)
+
+        // Adjust BMI based on age and gender (example adjustments, you may need to refine these based on actual guidelines)
+        val adjustedBMI = when {
+            age < 5 -> bmi + 2.0 // Adjust for very young children
+            age in 5..12 -> bmi + 1.0 // Adjust for children
+            age in 13..17 -> bmi + 0.5 // Adjust for teenagers
+            age in 18..24 -> bmi - 0.5 // Adjust for young adults
+            age >= 65 -> bmi + 1.0 // Adjust for older adults
+            else -> bmi // Default for adults
+        }
+
+        // Further adjustments based on gender (example adjustments, you may need to refine these based on actual guidelines)
+        val finalBMI = when {
+            gender.equals("female", ignoreCase = true) -> adjustedBMI - 0.5
+            gender.equals("male", ignoreCase = true) -> adjustedBMI
+            else -> adjustedBMI
+        }
+
+        return finalBMI
+    }
+
 
     private fun healthMessage1(bmi: Double): Any? {
         return when {
