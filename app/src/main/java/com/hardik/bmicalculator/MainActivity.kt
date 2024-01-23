@@ -41,19 +41,19 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        binding.seekBarAge.min = 0
+        binding.seekBarAge.min = 1
         binding.seekBarAge.max = 150
         age = 16
         binding.heightFeetPicker.minValue = 1
         binding.heightFeetPicker.maxValue = 15
         binding.heightFeetPicker.value = 5
-        binding.heightInchPicker.minValue = 0
+        binding.heightInchPicker.minValue = 1
         binding.heightInchPicker.maxValue = 11
         binding.heightInchPicker.value = 8
         binding.weightKgPicker.minValue = 2
         binding.weightKgPicker.maxValue = 150
         binding.weightKgPicker.value = 60
-        binding.weightGmPicker.minValue = 0
+        binding.weightGmPicker.minValue = 1
         binding.weightGmPicker.maxValue = 999
         binding.weightGmPicker.value = 200
 

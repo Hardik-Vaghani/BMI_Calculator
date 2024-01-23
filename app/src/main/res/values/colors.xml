@@ -2,7 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+    <color name="colorPrimary">#FF6750A4</color>
+    <color name="colorSecondary">#FF625B71</color>
+    <color name="colorTertiary">#FF3700B3</color>
+    <color name="colorQuaternary">#FF018786</color>
+<!--    <color name="colorQuinary">?attr/color</color>-->
+<!--    <color name="colorSenary">#FF625B71</color>-->
+<!--    <color name="colorSeptenary">#FF625B71</color>-->
+<!--    <color name="colorOctonary">#FF625B71</color>-->
+<!--    <color name="colorNonary">#FF625B71</color>-->
+<!--    <color name="colorDenary">#FF625B71</color>-->
+
     <color name="colorGreen">#c1e999</color>
     <color name="colorBlue">#87b2ee</color>
     <color name="colorRed">#f28a88</color>

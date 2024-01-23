@@ -86,7 +86,7 @@
                     tools:ignore="NestedWeights">
 
                     <ImageView
-                        android:id="@+id/iv_minus_height"
+                        android:id="@+id/iv_height_increase"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -101,7 +101,7 @@
                         app:shapeAppearanceOverlay="@style/roundedCorners" />
 
                     <ImageView
-                        android:id="@+id/iv_add_height"
+                        android:id="@+id/iv_height_decrease"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -209,7 +209,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/iv_minus_weight"
+                        android:id="@+id/iv_weight_decrease"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -224,7 +224,7 @@
                         app:shapeAppearanceOverlay="@style/roundedCorners" />
 
                     <ImageView
-                        android:id="@+id/iv_add_weight"
+                        android:id="@+id/iv_weight_increase"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -327,7 +327,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/iv_minus_age"
+                        android:id="@+id/iv_age_decrease"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -342,7 +342,7 @@
                         app:shapeAppearanceOverlay="@style/roundedCorners" />
 
                     <ImageView
-                        android:id="@+id/iv_add_age"
+                        android:id="@+id/iv_age_increase"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
@@ -415,7 +415,7 @@
                     android:layout_marginTop="5dp"
                     android:contentDescription="@string/image"
                     android:scaleType="fitXY"
-                    android:src="@drawable/icon_male" />
+                    android:src="@drawable/icon_male_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -446,7 +446,7 @@
                     android:layout_marginTop="5dp"
                     android:contentDescription="@string/image"
                     android:scaleType="fitXY"
-                    android:src="@drawable/icon_female" />
+                    android:src="@drawable/icon_female_white" />
 
                 <TextView
                     android:layout_width="wrap_content"

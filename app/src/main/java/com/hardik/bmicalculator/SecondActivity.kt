@@ -36,49 +36,49 @@ class SecondActivity : AppCompatActivity() {
 
         //height
         binding.seekBarCM.max = 381
-        binding.seekBarCM.min = 0
-        binding.seekBarCM.progress = 0
+        binding.seekBarCM.min = 1
+        binding.seekBarCM.progress = 1
         binding.seekBarInch.max = 150
-        binding.seekBarInch.min = 0
-        binding.seekBarInch.progress = 0
+        binding.seekBarInch.min = 1
+        binding.seekBarInch.progress = 1
         binding.tvHeight.text = "${resources.getString(R.string.height)} 0 CM"
 
         //weight
         binding.seekBarKG.max = 650
-        binding.seekBarKG.min = 0
-        binding.seekBarKG.progress = 0
+        binding.seekBarKG.min = 1
+        binding.seekBarKG.progress = 1
         binding.seekBarPound.max = 1433
-        binding.seekBarPound.min = 0
-        binding.seekBarPound.progress = 0
+        binding.seekBarPound.min = 1
+        binding.seekBarPound.progress = 1
         binding.tvWeight.text = "${resources.getString(R.string.height)} 0 KG"
 
         //Age
-        binding.seekBarAge.min = 0
+        binding.seekBarAge.min = 1
         binding.seekBarAge.max = 120
-        binding.seekBarAge.progress = 0
+        binding.seekBarAge.progress = 26
         binding.tvAge.text = "${resources.getString(R.string.age)} 0 Years"
 
         binding.tvGender.text = "${resources.getString(R.string.gender)} Male"
 
-        binding.ivAddHeight.setOnClickListener {
+        binding.ivHeightIncrease.setOnClickListener {
             if (binding.seekBarCM.isVisible)
                 binding.seekBarCM.progress++
             if (binding.seekBarInch.isVisible)
                 binding.seekBarInch.progress++
         }
-        binding.ivMinusHeight.setOnClickListener {
+        binding.ivHeightDecrease.setOnClickListener {
             if (binding.seekBarCM.isVisible)
                 binding.seekBarCM.progress--
             if (binding.seekBarInch.isVisible)
                 binding.seekBarInch.progress--
         }
-        binding.ivAddWeight.setOnClickListener {
+        binding.ivWeightIncrease.setOnClickListener {
             if (binding.seekBarKG.isVisible)
                 binding.seekBarKG.progress++
             if (binding.seekBarPound.isVisible)
                 binding.seekBarPound.progress++
         }
-        binding.ivMinusWeight.setOnClickListener {
+        binding.ivWeightDecrease.setOnClickListener {
             if (binding.seekBarKG.isVisible)
                 binding.seekBarKG.progress--
             if (binding.seekBarPound.isVisible)
@@ -97,10 +97,10 @@ class SecondActivity : AppCompatActivity() {
                 ContextCompat.getDrawable(it.context, R.drawable.background_box)
             gender = "Female"
         }
-        binding.ivAddAge.setOnClickListener {
+        binding.ivAgeIncrease.setOnClickListener {
             binding.seekBarAge.progress++
         }
-        binding.ivMinusAge.setOnClickListener {
+        binding.ivAgeDecrease.setOnClickListener {
             binding.seekBarAge.progress--
         }
         binding.tvHeightCM.setOnClickListener {
@@ -134,7 +134,7 @@ class SecondActivity : AppCompatActivity() {
             binding.tvWeightKg.background = null
             binding.seekBarPound.visibility = View.VISIBLE
             binding.seekBarKG.visibility = View.GONE
-            binding.tvWeight.text = "${resources.getString(R.string.weight)} $processPound Pound"
+            binding.tvWeight.text = "${resources.getString(R.string.weight)} $processPound Lbs"
         }
 
         binding.seekBarCM.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -172,7 +172,7 @@ class SecondActivity : AppCompatActivity() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 processPound = p1
                 totalWeightPoundToKG = poundToKg(p1.toDouble())
-                binding.tvWeight.text = "${resources.getString(R.string.weight)} $p1 Pound"
+                binding.tvWeight.text = "${resources.getString(R.string.weight)} $p1 Lbs"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {}
